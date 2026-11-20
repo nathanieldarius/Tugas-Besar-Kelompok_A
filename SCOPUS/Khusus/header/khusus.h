@@ -1,29 +1,36 @@
 #ifndef KHUSUS_H_INCLUDED
 #define KHUSUS_H_INCLUDED
+#include "../../MLL-02/header/penulis.h"
 #include "../../MLL-02/header/kepengarangan.h"
 #include "../../MLL-02/header/paper.h"
 #include "../../BST/header/nilaiBST.h"
 
-void khusus1(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus1(ListPaper &LPa, ListPenulis &LP, BST &T);
 /* I.S. -
-   F.S. Melakukan pengisian nilai mahasiswa dengan memilih mahasiswa dan mata kuliah tersedia.
+   F.S. Mengajukan karya ilmiah ke jurnal/konferensi dengan memilih paper dan
+        penulis pengaju yang terdaftar dalam hubungan kepengarangan paper tersebut.
 */
 
-void khusus2(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus2(ListPaper &LPa, ListPenulis &LP, BST &T);
 /* I.S. -
-   F.S. Menyimpan nilai mahasiswake BST berdasarkan nomor resi (unik dan acak).
+   F.S. Menyimpan riwayat pengajuan paper ke BST berdasarkan biaya pengajuan.
 */
 
-void khusus3(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus3(ListPaper &LPa, ListPenulis &LP, BST &T);
 /* I.S. -
-   F.S. Menampilkan Kartu Hasil Studi (KHS) mahasiswa berdasarkan semester tertentu dengan menampilkan
-        daftar mata kuliah beserta nilai yang diperoleh
+   F.S. Memperbarui status pengajuan karya ilmiah
+        (submitted, under review, accepted, rejected).
 */
 
-void khusus4(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus4(ListPaper &LPa, ListPenulis &LP, BST &T);
 /* I.S. -
-   F.S. Menghitung Indeks Prestasi Semester (IPS) mahasiswa berdasarkan nilai mata kuliah dan jumlah SKS yang
-        diambil pada semester tersebut
+   F.S. Menampilkan informasi jurnal/konferensi dengan jumlah karya ilmiah
+        dan pendapatan (total biaya pengajuan) terbanyak.
+*/
+
+void khusus5(ListPaper &LPa, ListPenulis &LP, BST &T);
+/* I.S. -
+   F.S. Menampilkan semua karya ilmiah berdasarkan status pengajuan.
 */
 
 #endif // KHUSUS_H_INCLUDED

@@ -1,23 +1,25 @@
-#ifndef SARA_H_INCLUDED
-#define SARA_H_INCLUDED
+#ifndef BONUS_H_INCLUDED
+#define BONUS_H_INCLUDED
+#include "../../MLL-02/header/penulis.h"
 #include "../../MLL-02/header/kepengarangan.h"
 #include "../../MLL-02/header/paper.h"
 #include "../../BST/header/nilaiBST.h"
 
-void bonus1(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void bonus1(ListPaper &LPa, ListPenulis &LP, BST &T);
 /* I.S. -
-   F.S. Menampilkan mahasiswa dengan IPS tertinggi pada suatu semester.
+   F.S. Menampilkan informasi penulis dengan karya ilmiah terbanyak
+        yang berstatus terpublish (accepted).
 */
 
-void bonus2(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void bonus2(ListPaper &LPa, ListPenulis &LP, BST &T);
 /* I.S. -
-   F.S. Menampilkan mata kuliah dengan jumlah mahasiswa terbanyak.
+   F.S. Menampilkan paper yang belum mendapatkan keputusan review
+        (status submitted atau under review).
 */
 
-void bonus3(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void bonus3(ListPaper &LPa, ListPenulis &LP, BST &T);
 /* I.S. -
-   F.S. Menampilkan transkrip nilai mahasiswa dari seluruh semester.
+   F.S. Menampilkan riwayat transaksi pengajuan berdasarkan nama penulis.
 */
 
-
-#endif // SARA_H_INCLUDED
+#endif // BONUS_H_INCLUDED

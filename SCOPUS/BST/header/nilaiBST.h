@@ -5,113 +5,106 @@
 
 using namespace std;
 
-struct NilaiAkademik
+struct Pengajuan
 {
-    ------------
+    string idPaper;
+    string idPenulis;     // penulis pengaju
+    string namaJurnal;    // nama jurnal/konferensi
+    int biaya;            // key BST
+    string status;        // submitted / under review / accepted / rejected
 };
 
-typedef ------------ ------------; // variabel alias untuk infor
-typedef  struct ------------ *------------;   // variabel alias untuk pointer
+typedef Pengajuan infotypeN;              // variabel alias untuk infor
+typedef struct nodePengajuan *addressN;   // variabel alias untuk pointer
 
 // kerangka dari elemen node
-struct nodeNilai
+struct nodePengajuan
 {
-    ------------
+    infotypeN info;
+    addressN left;
+    addressN right;
 };
 
 // kerangka dari BST
 struct BST
 {
-    ------------
+    addressN root;
 };
 
-------------;
-/* I.S. grade terdefinisi
-   F.S. mengembalikan urutan grade T < E < D < C < BC < B < AB < A,
-        atau -1 jika grade tidak dikenal */
-
-------------;
-/* I.S. record left dan right terdefinisi dengan grade yang dikenal
-   F.S. true jika record left berada sebelum record right sesuai urutan BST */
-
-------------;
-/* I.S. komponen tugas, kuis, UTS, dan UAS terdefinisi
-   F.S. nilai akhir dibulatkan dari 15% tugas + 15% kuis + 35% UTS + 35% UAS;
-        grade T digunakan jika hasil berbobot di luar 0 sampai 100 */
+bool sebelum(const Pengajuan &left, const Pengajuan &right);
+/* I.S. record left dan right terdefinisi
+   F.S. true jika left berada sebelum right: biaya lebih kecil,
+        lalu idPaper, idPenulis, namaJurnal sebagai tie-breaker */
 
 // pengecekan apakah BST kosong
-------------;
+bool isEmpty(BST T);
 /* I.S. BST T terdefinisi
    F.S. true jika BST kosong dan false jika tidak kosong */
 
 // pembuatan BST kosong
-------------;
+void CreateBST(BST &T);
 /* I.S. ~
    F.S. terbentuk BST kosong */
 
 // manajemen memori
-------------;
+addressN createElemen(infotypeN x);
 /* I.S. info x terdefinisi
    F.S. mengembalikan alamat node berisi x dengan anak kiri dan kanan NULL */
 
-------------;
+void dealokasi(addressN &P);
 /* I.S. pointer P terdefinisi
    F.S. memori yang digunakan P dikembalikan ke sistem */
 
 // pencarian sebuah elemen node
-------------;
-/* I.S. BST T dan identitas mahasiswa, mata kuliah, serta periode terdefinisi
-   F.S. mengembalikan alamat node yang cocok atau NULL jika tidak ditemukan
-*/
+addressN findNode(BST T, string idPaper, string idPenulis, string namaJurnal);
+/* I.S. BST T dan identitas pengajuan terdefinisi
+   F.S. mengembalikan alamat node yang cocok atau NULL jika tidak ditemukan */
 
-// penambahan elemen *
-------------;
+// penambahan elemen
+void insertNode(BST &T, addressN P);
 /* I.S. terdefinisi BST T yang mungkin kosong dan elemen node P
-   F.S. menempatkan elemen beralamat P menurut T < E < D < C < BC < B < AB < A,
-        lalu NIM, kode MK, semester, dan tahun akademik sebagai tie-breaker */
+   F.S. menempatkan P berdasarkan biaya pengajuan (kecil di kiri, besar di kanan) */
 
 // penghapusan node yang sudah diketahui alamatnya
-------------;
-/* I.S. terdefinisi BST T yang mungkin kosong dan elemen node P
-   F.S. P adalah alamat dari alamat elemen yang akan dihapus.
-        elemen lain menggantikan posisi elemen P yang dihapus
-        sesuai aturan BST*/
+void deleteNode(BST &T, addressN &P);
+/* I.S. terdefinisi BST T yang mungkin kosong dan node P
+   F.S. P dilepas dari BST (belum di-dealokasi); node lain menggantikan
+        posisi P sesuai aturan BST */
 
-------------;
-/* I.S. terdefinisi BST T dan identitas record nilai
+void deletePengajuan(BST &T, string idPaper, string idPenulis, string namaJurnal);
+/* I.S. terdefinisi BST T dan identitas pengajuan
    F.S. record yang cocok dihapus jika ditemukan */
 
-------------;
+void printInOrder(BST T);
 /* I.S. terdefinisi BST T
-   F.S. seluruh record ditampilkan dengan traversal in-order */
+   F.S. seluruh record ditampilkan dengan traversal in-order (biaya naik) */
 
-------------;
+void printPreOrder(BST T);
 /* I.S. terdefinisi BST T
    F.S. seluruh record ditampilkan dengan traversal pre-order */
 
-------------;
+void printPostOrder(BST T);
 /* I.S. terdefinisi BST T
    F.S. seluruh record ditampilkan dengan traversal post-order */
 
-------------;
+addressN findMin(BST T);
 /* I.S. terdefinisi BST T
-   F.S. mengembalikan node dengan grade minimum atau NULL jika BST kosong */
+   F.S. mengembalikan node dengan biaya minimum atau NULL jika BST kosong */
 
-------------;
+addressN findMax(BST T);
 /* I.S. terdefinisi BST T
-   F.S. mengembalikan node dengan grade maksimum atau NULL jika BST kosong */
+   F.S. mengembalikan node dengan biaya maksimum atau NULL jika BST kosong */
 
-------------;
+int tinggiBST(BST T);
 /* I.S. terdefinisi BST T
    F.S. mengembalikan tinggi BST; tinggi pohon kosong adalah 0 */
 
-------------;
+int jumlahNode(BST T);
 /* I.S. terdefinisi BST T
    F.S. mengembalikan jumlah node dalam BST */
 
-------------;
+infotypeN inputPengajuan();
 /* I.S. ~
-   F.S. meminta data nilai akademik dari user */
-
+   F.S. meminta data pengajuan dari user */
 
 #endif // NILAIBST_H_INCLUDED

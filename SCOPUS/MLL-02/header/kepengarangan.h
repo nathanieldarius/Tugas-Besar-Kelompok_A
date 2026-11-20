@@ -1,94 +1,95 @@
 #ifndef KEPENGARANGAN_H_INCLUDED
 #define KEPENGARANGAN_H_INCLUDED
+
 #include "penulis.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-struct ------------
+struct Kepengarangan
 {
-    ------------
+    int urutan;        // urutan penulis pada paper
+    string peran;      // "penulis utama" / "anggota"
 };
 
-typedef ------------ ------------;         // variabel alias untuk infor
-typedef  struct ------------ *------------;   // variabel alias untuk pointer
+typedef Kepengarangan infotypeK;              // variabel alias untuk infor
+typedef struct elmKepengarangan *addressK;    // variabel alias untuk pointer
 
-// kerangka dari elemen list
-struct ------------
+// kerangka dari elemen list (relasi)
+struct elmKepengarangan
 {
-    ------------
+    infotypeK info;
+    addressK next;
+    addressP pPenulis;   // relasi ke penulis (tidak ikut dihapus)
 };
 
 // kerangka dari list
-struct ListKRS
+struct ListKepengarangan
 {
-    ------------
+    addressK first;
+    addressK last;
 };
 
 // pengecekan apakah list kosong
-------------;
+bool isEmpty(ListKepengarangan LK);
 /* I.S. list LK terdefinisi
    F.S. true jika list kosong dan false jika tidak kosong */
 
 // pembuatan list kosong
-------------;
+void CreateList(ListKepengarangan &LK);
 /* I.S. ~
    F.S. terbentuk list kosong */
 
 // manajemen memori
-------------;
-/* I.S. info KRS x dan alamat mata kuliah terdefinisi
-   F.S. mengembalikan alamat elemen KRS berisi x, next NULL, dan menunjuk pMatakuliah */
+addressK createElemen(infotypeK x, addressP pPenulis);
+/* I.S. info kepengarangan x dan alamat penulis terdefinisi
+   F.S. mengembalikan alamat elemen berisi x, next NULL, dan menunjuk pPenulis */
 
-------------;
+void dealokasi(addressK &P);
 /* I.S. pointer P terdefinisi
-   F.S. elemen KRS di-dealokasi; elemen mata kuliah yang ditunjuk tidak ikut dihapus */
+   F.S. elemen relasi di-dealokasi; elemen penulis yang ditunjuk tidak ikut dihapus */
 
 // pencarian sebuah elemen list
-------------;
-/* I.S. list LK milik mahasiswa dan ID KRS terdefinisi
-   F.S. mengembalikan alamat elemen KRS yang cocok atau NULL jika tidak ditemukan
-*/
+addressK findElm(ListKepengarangan LK, string idPenulis);
+/* I.S. list LK milik sebuah paper dan id penulis terdefinisi
+   F.S. mengembalikan alamat relasi yang menunjuk penulis tersebut atau NULL jika tidak ada */
 
 // penambahan elemen *
-------------;
+void insertFirst(ListKepengarangan &LK, addressK P);
 /* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
    F.S. menempatkan elemen beralamat P pada awal list */
 
-------------;
-/* I.S. terdefinisi list LK yang mungkin kosong, elemen list P dan elemn list prec
+void insertAfter(ListKepengarangan &LK, addressK Prec, addressK P);
+/* I.S. terdefinisi list LK yang mungkin kosong, elemen list P dan elemen list Prec
    F.S. menempatkan elemen beralamat P sesudah elemen beralamat Prec */
 
-------------;
+void insertLast(ListKepengarangan &LK, addressK P);
 /* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
    F.S. menempatkan elemen beralamat P pada akhir list */
 
 // penghapusan sebuah elemen
-------------;
-/* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
-   F.S. P adalah alamat dari alamat elemen pertama list
-        yang akan dihapus dan elemen list selanjutnya akan menjadi
-        elemenlist pertama atau tidak ada elemen list pertama*/
+void deleteFirst(ListKepengarangan &LK, addressK &P);
+/* I.S. terdefinisi list LK yang mungkin kosong
+   F.S. P adalah alamat elemen pertama yang dihapus;
+        elemen selanjutnya menjadi elemen pertama atau list kosong */
 
-------------;
-/* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
-   F.S. P adalah alamat dari alamat elemen terakhir list
-        yang akan dihapus dan elemen list sebelumnya akan menjadi
-        elemenlist terakhir atau tidak ada elemen list terakhir */
+void deleteLast(ListKepengarangan &LK, addressK &P);
+/* I.S. terdefinisi list LK yang mungkin kosong
+   F.S. P adalah alamat elemen terakhir yang dihapus;
+        elemen sebelumnya menjadi elemen terakhir atau list kosong */
 
-------------;
-/* I.S. terdefinisi list LK yang mungkin kosong, elemen list P dan elemn list prec
-   F.S. P adalah alamat dari alamat elemen list setelah prec
-        yang akan dihapus dan elemen list setelah p akan terhubung
-        langsung dengan prec atau tidak ada elemen list setelahnya */
+void deleteAfter(ListKepengarangan &LK, addressK Prec, addressK &P);
+/* I.S. terdefinisi list LK yang mungkin kosong dan elemen list Prec
+   F.S. P adalah alamat elemen setelah Prec yang dihapus;
+        elemen setelah P terhubung langsung dengan Prec */
 
-------------;
+void printInfo(ListKepengarangan LK);
 /* I.S. terdefinisi list LK yang mungkin kosong
    F.S. jika list tidak kosong menampilkan semua info yang ada pada list */
 
-------------;
+infotypeK inputKepengarangan();
 /* I.S. ~
-        F.S. meminta data KRS dari user */
+   F.S. meminta data kepengarangan (urutan dan peran) dari user */
 
-#endif // KRS_H_INCLUDED
+#endif // KEPENGARANGAN_H_INCLUDED
